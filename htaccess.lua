@@ -1280,7 +1280,7 @@ if get_cdir('rewrite') and #parsed_rewriterules > 0 then
 				if (not redirect or not dst:match('^https?://')) and dst:sub(1,1) ~= '/' then
 					dst = '/'..base..dst
 				end
-				if dst:match('%.%.') then
+				if dst:match('%.%./') or dst:match('/%.%.') then
 					fail('Parent directory selector /../ not allowed in RewriteRule for security reasons')
 				end
 				if request_uri ~= dst then
